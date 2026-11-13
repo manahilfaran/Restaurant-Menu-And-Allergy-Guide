@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margalla Table – Menu and Allergen Manager</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#menu">Skip to menu table</a>
+<header class="hero">
+  <h1>Margalla Table: menu and allergen manager</h1>
+  <p>Keep every dish's allergen information accurate and up to date, and answer guest allergy questions in seconds.</p>
+  <nav aria-label="Sections"><a href="#overview">Overview</a><a href="#lookup">Guest lookup</a><a href="#menu">Menu</a><a href="#recent">Recent changes</a></nav>
+
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 320 300" role="img" focusable="false">
+      <circle class="ring" cx="160" cy="160" r="140"/>
+      <g class="steam"><path d="M130 130 C115 105 145 90 130 60"/><path d="M160 130 C145 100 175 85 160 50"/><path d="M190 130 C175 105 205 90 190 62"/></g>
+      <path class="bowl" d="M50 150 H270 C270 220 230 262 160 262 C90 262 50 220 50 150 Z"/>
+      <ellipse class="rim" cx="160" cy="150" rx="110" ry="14"/>
+      <ellipse class="food" cx="160" cy="148" rx="98" ry="9"/>
+    </svg>
+    <span class="float f1">✕ nuts</span><span class="float f2">✕ dairy</span><span class="float f3">✕ gluten</span><span class="float f4">✓ safe</span>
+  </div>
+</header>
+<p class="banner" role="note"><strong>Not medical advice.</strong> This tool only shows what staff have entered. Confirm with the chef before telling a guest a dish is safe.</p>
+
+<main class="shell">
+  <section id="overview" aria-labelledby="ov-h"><h2 id="ov-h" class="sr">Overview</h2><div id="stats" class="stats"></div></section>
+
+  <section id="lookup" class="panel" aria-labelledby="lk-h">
+    <h2 id="lk-h">Guest allergy lookup</h2>
+    <p class="meta">A guest tells you what they avoid. Tick it to see which dishes you can offer.</p>
+    <fieldset><legend>Guest avoids</legend><div id="lkChips" class="chips"></div></fieldset>
+    <label for="lkOther">Other ingredients to avoid</label>
+    <input id="lkOther" placeholder="e.g. coriander, mushroom">
+    <div id="lkOut" aria-live="polite"></div>
+  </section>
+
+  <section id="menu" aria-labelledby="menu-h">
+    <div class="head"><h2 id="menu-h">Menu management</h2>
+      <div class="row"><button type="button" id="addDish">Add dish</button><button type="button" id="csv" class="ghost">Export CSV</button></div></div>
+    <form id="toolbar" class="toolbar" novalidate>
+      <div><label for="search">Search dish or ingredient</label><input id="search" type="search"></div>
+      <div><label for="cat">Category</label><select id="cat"><option value="">All</option></select></div>
+      <div><label for="has">Contains</label><select id="has"><option value="">Any allergen</option></select></div>
+      <div><label for="free">Free from</label><select id="free"><option value="">No filter</option></select></div>
+      <div><label for="state">Show</label><select id="state"><option value="">All dishes</option><option value="old">Needs review</option><option value="note">Has cross-contact note</option></select></div>
+      <div><label for="sort">Sort by</label><select id="sort"><option value="name">Name</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="old">Oldest update first</option></select></div>
+    </form>
+    <p id="status" role="status" aria-live="polite"></p>
+    <div class="tablewrap"><table id="tbl">
+      <caption class="sr">Menu items with allergen information</caption>
+      <thead><tr><th scope="col">Dish</th><th scope="col">Price</th><th scope="col">Contains</th><th scope="col">May contain traces</th><th scope="col">Last updated</th><th scope="col">Actions</th></tr></thead>
+      <tbody id="rows"></tbody></table></div>
+  </section>
+
+  <section id="recent" class="panel" aria-labelledby="rc-h"><h2 id="rc-h">Recent changes</h2><ol id="recentList"></ol></section>
+</main>
+
+<dialog id="editor" aria-labelledby="eTitle">
+  <form id="editForm" novalidate>
+    <h2 id="eTitle">Add dish</h2>
+    <input type="hidden" id="eId">
+    <label for="eName">Dish name</label><input id="eName" required minlength="2" maxlength="60">
+    <label for="ePrice">Price (Rs)</label><input id="ePrice" type="number" min="1" max="10000" required>
+    <label for="eCat">Category</label><select id="eCat"><option>Mains</option><option>Rice</option><option>Breads</option><option>Desserts</option><option>Wraps</option></select>
+    <fieldset><legend>Contains</legend><div id="eAll" class="chips"></div></fieldset>
+    <fieldset><legend>May contain traces of</legend><div id="eTr" class="chips"></div></fieldset>
+    <label for="eIng">Ingredients (comma separated)</label><input id="eIng" required>
+    <label for="eNote">Cross-contact note (optional)</label><textarea id="eNote" rows="2" maxlength="150"></textarea>
+    <p id="eMsg" class="err" role="alert"></p>
+    <div class="row"><button type="submit">Save dish</button><button type="button" id="eCancel" class="ghost">Cancel</button></div>
+  </form>
+</dialog>
+<footer><p>Web Development, Assignment 1. Sample data only.</p></footer>
+<script src="script.js"></script>
+</body>
+</html>
