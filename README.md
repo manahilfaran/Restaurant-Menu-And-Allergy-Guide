@@ -1,8 +1,10 @@
 # Margalla Table – Menu and Allergen Manager
 
-**Course project, Assignment 1** (due Friday 30 October 2026)
-**Assigned idea:** Restaurant Menu and Allergy Guide (idea # 27 from page 4)
+**Course project, Assignment 1** 
+**Assigned idea:** Restaurant Menu and Allergy Guide 
 **Instructor rule / data variant:** Menu management, ingredient/allergen filters, cross-contact notes and update timestamps. Not presented as medical advice.
+
+GitHub link: https://github.com/manahilfaran/Restaurant-Menu-And-Allergy-Guide.git
 
 **Live URL:** https://manahilfaran.github.io/Restaurant-Menu-And-Allergy-Guide/
 
